@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#g#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "extrasponges:iron_sponge"
+    },
+    "g": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "extrasponges:gold_sponge",
+    "count": 8
+  }
+}

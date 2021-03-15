@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#S#",
+    "SBS",
+    "#S#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:magma_block"
+    },
+    "S": {
+      "item": "minecraft:sponge"
+    },
+    "B": {
+      "item": "minecraft:basalt"
+    }
+  },
+  "result": {
+    "item": "extrasponges:lava_sponge",
+    "count": 4
+  }
+}

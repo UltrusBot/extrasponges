@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "extrasponges",
+  "version": "${version}",
+  "name": "ExtraSponges",
+  "description": "Adds some extra sponges to the game",
+  "authors": [
+    "Ultra"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/extrasponges/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "io.github.ultrusbot.extrasponges.client.ExtraSpongesClient"
+    ],
+    "main": [
+      "io.github.ultrusbot.extrasponges.ExtraSponges"
+    ]
+  },
+  "mixins": [
+    "extrasponges.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.16.5"
+  }
+}
