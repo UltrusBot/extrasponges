@@ -66,7 +66,7 @@ public class LavaSpongeBlock extends Block {
                 FluidState fluidState = world.getFluidState(blockPos2);
                 Material material = blockState.getMaterial();
                 if (fluidState.isIn(FluidTags.LAVA)) {
-                    if (blockState.getBlock() instanceof FluidDrainable && ((FluidDrainable)blockState.getBlock()).tryDrainFluid(world, blockPos2, blockState) != Fluids.EMPTY) {
+                    if (blockState.getBlock() instanceof FluidDrainable && !((FluidDrainable)blockState.getBlock()).tryDrainFluid(world, blockPos2, blockState).isEmpty()) {
                         ++i;
                         if (j < range) {
                             queue.add(new Pair(blockPos2, j + 1));
