@@ -1,0 +1,34 @@
+{
+  "parent": "extrasponges:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extrasponges:netherite_sponge"
+    ]
+  },
+  "criteria": {
+    "has_netherite_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:netherite_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extrasponges:netherite_sponge"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_netherite_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}
