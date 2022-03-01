@@ -26,7 +26,7 @@ public class WetLavaSpongeBlock extends Block {
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         boolean isTouchingWater = false;
         for (BlockPos blockPos : BlockPos.iterateOutwards(pos, 1, 1, 1)) {
-            if (world.getBlockState(blockPos).getFluidState().isIn(FluidTags.WATER)) {
+            if (world.getBlockState(blockPos).getFluidState().method_15767(FluidTags.WATER)) {
                 isTouchingWater = true;
             }
         }
