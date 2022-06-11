@@ -12,6 +12,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -26,7 +27,7 @@ public class WetLavaSpongeBlock extends Block {
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         boolean isTouchingWater = false;
         for (BlockPos blockPos : BlockPos.iterateOutwards(pos, 1, 1, 1)) {
-            if (world.getBlockState(blockPos).getFluidState().method_15767(FluidTags.WATER)) {
+            if (world.getBlockState(blockPos).getFluidState().isIn(FluidTags.WATER)) {
                 isTouchingWater = true;
             }
         }
@@ -39,7 +40,7 @@ public class WetLavaSpongeBlock extends Block {
     }
 
     @Environment(EnvType.CLIENT)
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, RandomGenerator random) {
         Direction direction = Direction.random(random);
         if (direction != Direction.UP) {
             BlockPos blockPos = pos.offset(direction);

@@ -9,6 +9,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -21,7 +22,7 @@ public class ExtraWetSpongeBlock extends Block {
     }
 
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        if (world.getDimension().isUltrawarm()) {
+        if (world.getDimension().ultraWarm()) {
             world.setBlockState(pos, originalBlock, 3);
             world.syncWorldEvent(2009, pos, 0);
             world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, (1.0F + world.getRandom().nextFloat() * 0.2F) * 0.7F);
@@ -30,7 +31,7 @@ public class ExtraWetSpongeBlock extends Block {
     }
 
     @Environment(EnvType.CLIENT)
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, RandomGenerator random) {
         Direction direction = Direction.random(random);
         if (direction != Direction.UP) {
             BlockPos blockPos = pos.offset(direction);
