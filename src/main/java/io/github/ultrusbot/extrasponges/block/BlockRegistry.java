@@ -11,7 +11,7 @@ public class BlockRegistry {
     private static final String MOD_ID = ExtraSponges.MOD_ID;
     public static Block IRON_SPONGE = new ExtraSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), 128, 128);
     public static Block GOLD_SPONGE = new ExtraSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), 30, 192);
-    public static Block DIAMOND_SPONGE = new ExtraSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), 42, 192);
+    public static Block DIAMOND_SPONGE = new ExtraSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), 42, 256);
     public static Block NETHERITE_SPONGE = new ExtraSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), 66, 384);
     public static Block WET_IRON_SPONGE = new ExtraWetSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), IRON_SPONGE.getDefaultState());
     public static Block WET_GOLD_SPONGE = new ExtraWetSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), GOLD_SPONGE.getDefaultState());
