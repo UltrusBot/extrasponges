@@ -2,7 +2,9 @@ plugins {
 	id 'fabric-loom' version '0.11.+'
 	id 'maven-publish'
 	id 'io.github.juuxel.loom-quiltflower' version '1.6.0'
-	id 'org.quiltmc.quilt-mappings-on-loom' version '4.0.0'
+	id "com.github.breadmoirai.github-release" version "2.4.1"
+	id "com.modrinth.minotaur" version "2.+"
+	id 'com.matthewprenger.cursegradle' version '1.4.0'
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -15,11 +17,7 @@ group = project.maven_group
 repositories {
 	maven {
 		name 'Quilt'
-		url 'https://maven.quiltmc.org/repository'
-	}
-	maven {
-		name 'Quilt Snapshots'
-		url 'https://maven.quiltmc.org/repository/snapshot'
+		url 'https://maven.quiltmc.org/repository/release'
 	}
 	maven {
 		url 'https://jitpack.io'
@@ -29,9 +27,8 @@ repositories {
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings(loom.layered {
-		addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:${minecraft_version}+build.${project.quilt_mappings}:v2"))
-	})
+	mappings "org.quiltmc:quilt-mappings:${project.minecraft_version}+build.${project.quilt_mappings}:intermediary-v2"
+
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API.
@@ -65,6 +62,53 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
+}
+
+githubRelease {
+	if (System.getenv("GH_TOKEN") != null) {
+		authorization = "Token ${System.getenv("GH_TOKEN")}"
+	}
+	owner = "UltrusBot"
+	repo = "ExtraSponges"
+	targetCommitish = "1.19.3"
+	tagName = "v${project.version}"
+	body = new File("$rootDir/CHANGELOG.md").getText('UTF-8')
+	releaseAssets = [remapJar, remapSourcesJar]
+}
+
+modrinth {
+	if (System.getenv("MODRINTH_TOKEN") != null) {
+		token = System.getenv("MODRINTH_TOKEN")
+	}
+	projectId = "extrasponges"
+	versionType = "release"
+	versionName = "Extra Sponges v${project.version}"
+	uploadFile = remapJar
+	changelog = new File("$rootDir/CHANGELOG.md").getText('UTF-8')
+	versionName = "Extra Sponges v${project.version}"
+	gameVersions = ["1.19.3-rc1"]
+	loaders = ["quilt", "fabric"]
+	syncBodyFrom = rootProject.file("README.md").text
+}
+
+
+
+curseforge {
+	if (System.getenv("CF_API_KEY") != null) {
+		apiKey = System.getenv("CF_API_KEY")
+
+	}
+	project {
+		id = "457043"
+		changelogType = "markdown"
+		changelog = new File("$rootDir/CHANGELOG.md").getText('UTF-8')
+		releaseType = "release"
+		addGameVersion "1.19.3"
+		mainArtifact(remapJar) {
+			displayName = "Extra Sponges v${project.version}"
+		}
+	}
+
 }
 
 // configure the maven publication

@@ -4,8 +4,9 @@ import io.github.ultrusbot.extrasponges.ExtraSponges;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.registry.BuiltinRegistries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class BlockRegistry {
     private static final String MOD_ID = ExtraSponges.MOD_ID;
@@ -41,7 +42,7 @@ public class BlockRegistry {
 
     }
     private static Block register(String id, Block block) {
-        return Registry.register(Registry.BLOCK, new Identifier(MOD_ID, id), block);
+        return Registry.register(BuiltinRegistries.BLOCK, new Identifier(MOD_ID, id), block);
     }
 
 }

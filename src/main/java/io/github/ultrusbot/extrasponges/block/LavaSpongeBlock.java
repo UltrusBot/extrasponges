@@ -2,10 +2,8 @@ package io.github.ultrusbot.extrasponges.block;
 
 import com.google.common.collect.Lists;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -49,33 +47,30 @@ public class LavaSpongeBlock extends Block {
 
     private boolean absorbLava(World world, BlockPos pos) {
         Queue<Pair<BlockPos, Integer>> queue = Lists.newLinkedList();
-        queue.add(new Pair(pos, 0));
+        queue.add(new Pair<>(pos, 0));
         int i = 0;
 
         while(!queue.isEmpty()) {
             Pair<BlockPos, Integer> pair = queue.poll();
             BlockPos blockPos = pair.getLeft();
             int j = pair.getRight();
-            Direction[] var8 = Direction.values();
-            int var9 = var8.length;
+            Direction[] directions = Direction.values();
 
-            for(int var10 = 0; var10 < var9; ++var10) {
-                Direction direction = var8[var10];
+            for (Direction direction : directions) {
                 BlockPos blockPos2 = blockPos.offset(direction);
                 BlockState blockState = world.getBlockState(blockPos2);
                 FluidState fluidState = world.getFluidState(blockPos2);
-                Material material = blockState.getMaterial();
                 if (fluidState.isIn(FluidTags.LAVA)) {
-                    if (blockState.getBlock() instanceof FluidDrainable && !((FluidDrainable)blockState.getBlock()).tryDrainFluid(world, blockPos2, blockState).isEmpty()) {
+                    if (blockState.getBlock() instanceof FluidDrainable && !((FluidDrainable) blockState.getBlock()).tryDrainFluid(world, blockPos2, blockState).isEmpty()) {
                         ++i;
                         if (j < range) {
-                            queue.add(new Pair(blockPos2, j + 1));
+                            queue.add(new Pair<>(blockPos2, j + 1));
                         }
                     } else if (blockState.getBlock() instanceof FluidBlock) {
                         world.setBlockState(blockPos2, Blocks.AIR.getDefaultState(), 3);
                         ++i;
                         if (j < range) {
-                            queue.add(new Pair(blockPos2, j + 1));
+                            queue.add(new Pair<>(blockPos2, j + 1));
                         }
                     }
                 }
