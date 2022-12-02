@@ -19,9 +19,6 @@
       "io.github.ultrusbot.extrasponges.ExtraSponges"
     ]
   },
-  "mixins": [
-    "extrasponges.mixins.json"
-  ],
   "depends": {
     "fabricloader": ">=0.11.3",
     "fabric": "*",
