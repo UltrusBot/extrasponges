@@ -1,2 +1,2 @@
-- Updated to 1.19.3
-- Change Wet Lava Sponge name to Molten Lava Sponge
+- Updated to 1.19.4
+- Thanks [Nitjsefnie](https://github.com/Nitjsefnie) for PR'ing this update. 
