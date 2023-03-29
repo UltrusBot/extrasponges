@@ -5,7 +5,7 @@ import io.github.ultrusbot.extrasponges.block.BlockRegistry;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.registry.BuiltinRegistries;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
@@ -26,7 +26,7 @@ public class ItemRegistry {
 
     }
     private static Item register(String id, Item item) {
-        return Registry.register(BuiltinRegistries.ITEM, new Identifier(MOD_ID, id), item);
+        return Registry.register(Registries.ITEM, new Identifier(MOD_ID, id), item);
     }
     static {
         IRON_SPONGE = register("iron_sponge", new BlockItem(BlockRegistry.IRON_SPONGE, new FabricItemSettings()));

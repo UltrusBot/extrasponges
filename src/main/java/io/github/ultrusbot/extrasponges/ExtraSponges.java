@@ -15,9 +15,9 @@ public class ExtraSponges implements ModInitializer {
     public static final String MOD_ID = "extrasponges";
     public static final ItemGroup SPONGE_ITEMS = FabricItemGroup.builder(
             new Identifier(MOD_ID, "items"))
-            .m_gtpxdjib(Text.translatable("itemGroup.extrasponges.items"))
-            .m_kdtuovgn(() -> new ItemStack(Items.SPONGE))
-            .m_cetlzdca((enabledFeatures, entries, operatorEnabled) -> {
+            .name(Text.translatable("itemGroup.extrasponges.items"))
+            .icon(() -> new ItemStack(Items.SPONGE))
+            .entries((context, entries) -> {
                 entries.addItem(ItemRegistry.IRON_SPONGE);
                 entries.addItem(ItemRegistry.GOLD_SPONGE);
                 entries.addItem(ItemRegistry.DIAMOND_SPONGE);
@@ -29,7 +29,7 @@ public class ExtraSponges implements ModInitializer {
                 entries.addItem(ItemRegistry.LAVA_SPONGE);
                 entries.addItem(ItemRegistry.WET_LAVA_SPONGE);
             })
-            .m_fepxguyf();
+            .build();
 
 
 
