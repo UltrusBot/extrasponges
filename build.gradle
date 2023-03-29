@@ -70,7 +70,7 @@ githubRelease {
 	}
 	owner = "UltrusBot"
 	repo = "ExtraSponges"
-	targetCommitish = "1.19.3"
+	targetCommitish = "1.19.4"
 	tagName = "v${project.version}"
 	body = new File("$rootDir/CHANGELOG.md").getText('UTF-8')
 	releaseAssets = [remapJar, remapSourcesJar]
@@ -86,7 +86,7 @@ modrinth {
 	uploadFile = remapJar
 	changelog = new File("$rootDir/CHANGELOG.md").getText('UTF-8')
 	versionName = "Extra Sponges v${project.version}"
-	gameVersions = ["1.19.3-rc1"]
+	gameVersions = ["1.19.4"]
 	loaders = ["quilt", "fabric"]
 	syncBodyFrom = rootProject.file("README.md").text
 }
@@ -103,7 +103,7 @@ curseforge {
 		changelogType = "markdown"
 		changelog = new File("$rootDir/CHANGELOG.md").getText('UTF-8')
 		releaseType = "release"
-		addGameVersion "1.19.3"
+		addGameVersion "1.19.4"
 		mainArtifact(remapJar) {
 			displayName = "Extra Sponges v${project.version}"
 		}
