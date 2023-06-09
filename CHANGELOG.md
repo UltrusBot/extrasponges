@@ -1,2 +1,1 @@
-- Updated to 1.19.4
-- Thanks [Nitjsefnie](https://github.com/Nitjsefnie) for PR'ing this update. 
+- Updated to 1.20

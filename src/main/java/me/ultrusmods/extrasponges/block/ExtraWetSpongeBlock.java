@@ -1,4 +1,4 @@
-package io.github.ultrusbot.extrasponges.block;
+package me.ultrusmods.extrasponges.block;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -11,8 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.World;
-
-import java.util.Random;
 
 public class ExtraWetSpongeBlock extends Block {
     private final BlockState originalBlock;

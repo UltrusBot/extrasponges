@@ -1,4 +1,4 @@
-package io.github.ultrusbot.extrasponges.block;
+package me.ultrusmods.extrasponges.block;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

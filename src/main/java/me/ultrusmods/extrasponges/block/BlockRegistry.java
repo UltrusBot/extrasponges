@@ -1,6 +1,6 @@
-package io.github.ultrusbot.extrasponges.block;
+package me.ultrusmods.extrasponges.block;
 
-import io.github.ultrusbot.extrasponges.ExtraSponges;
+import me.ultrusmods.extrasponges.ExtraSponges;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;

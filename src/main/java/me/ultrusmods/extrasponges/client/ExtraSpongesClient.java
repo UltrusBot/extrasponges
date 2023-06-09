@@ -1,4 +1,4 @@
-package io.github.ultrusbot.extrasponges.client;
+package me.ultrusmods.extrasponges.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
