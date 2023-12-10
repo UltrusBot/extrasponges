@@ -10,17 +10,17 @@ import net.minecraft.util.Identifier;
 
 public class BlockRegistry {
     private static final String MOD_ID = ExtraSponges.MOD_ID;
-    public static Block IRON_SPONGE = new ExtraSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), 18, 128);
-    public static Block GOLD_SPONGE = new ExtraSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), 30, 192);
-    public static Block DIAMOND_SPONGE = new ExtraSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), 42, 256);
-    public static Block NETHERITE_SPONGE = new ExtraSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), 66, 384);
-    public static Block WET_IRON_SPONGE = new ExtraWetSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), IRON_SPONGE.getDefaultState());
-    public static Block WET_GOLD_SPONGE = new ExtraWetSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), GOLD_SPONGE.getDefaultState());
-    public static Block WET_DIAMOND_SPONGE = new ExtraWetSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), DIAMOND_SPONGE.getDefaultState());
-    public static Block WET_NETHERITE_SPONGE = new ExtraWetSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), NETHERITE_SPONGE.getDefaultState());
+    public static Block IRON_SPONGE = new ExtraSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE), 18, 128);
+    public static Block GOLD_SPONGE = new ExtraSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE), 30, 192);
+    public static Block DIAMOND_SPONGE = new ExtraSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE), 42, 256);
+    public static Block NETHERITE_SPONGE = new ExtraSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE), 66, 384);
+    public static Block WET_IRON_SPONGE = new ExtraWetSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE), IRON_SPONGE.getDefaultState());
+    public static Block WET_GOLD_SPONGE = new ExtraWetSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE), GOLD_SPONGE.getDefaultState());
+    public static Block WET_DIAMOND_SPONGE = new ExtraWetSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE), DIAMOND_SPONGE.getDefaultState());
+    public static Block WET_NETHERITE_SPONGE = new ExtraWetSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE), NETHERITE_SPONGE.getDefaultState());
 
-    public static Block LAVA_SPONGE = new LavaSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), 6, 64);
-    public static Block WET_LAVA_SPONGE = new WetLavaSpongeBlock(FabricBlockSettings.copy(Blocks.SPONGE), LAVA_SPONGE.getDefaultState());
+    public static Block LAVA_SPONGE = new LavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE), 6, 64);
+    public static Block WET_LAVA_SPONGE = new WetLavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE), LAVA_SPONGE.getDefaultState());
 
     public static void register() {
         ((ExtraSpongeBlock)IRON_SPONGE).setWetSponge(WET_IRON_SPONGE);

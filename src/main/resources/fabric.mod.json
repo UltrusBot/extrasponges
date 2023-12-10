@@ -15,9 +15,6 @@
   "icon": "assets/extrasponges/icon.png",
   "environment": "*",
   "entrypoints": {
-    "client": [
-      "me.ultrusmods.extrasponges.client.ExtraSpongesClient"
-    ],
     "main": [
       "me.ultrusmods.extrasponges.ExtraSponges"
     ]
@@ -25,6 +22,6 @@
   "depends": {
     "fabricloader": ">=0.11.3",
     "fabric": "*",
-    "minecraft": "1.20.x"
+    "minecraft": ">=1.20.3"
   }
 }

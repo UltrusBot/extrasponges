@@ -57,7 +57,7 @@ public class ExtraSpongeBlock extends Block {
                 } else {
                     Block block = blockState.getBlock();
                     if (block instanceof FluidDrainable fluidDrainable) {
-                        if (!fluidDrainable.tryDrainFluid(world, checkedPos, blockState).isEmpty()) {
+                        if (!fluidDrainable.tryDrainFluid(null, world, checkedPos, blockState).isEmpty()) {
                             return true;
                         }
                     }
