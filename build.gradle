@@ -55,7 +55,7 @@ publishMods {
 	displayName = "Extra Sponges v${project.version}"
 	file = remapJar.archiveFile
 	changelog = file("$rootDir/CHANGELOG.md").text
-	version = project.version
+	version = "v${project.version}"
 	type = STABLE
 	modLoaders.addAll("fabric", "quilt")
 
