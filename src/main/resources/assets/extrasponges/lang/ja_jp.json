@@ -1,0 +1,15 @@
+{
+  "itemGroup.extrasponges.items": "Extra Sponges",
+  "block.extrasponges.iron_sponge": "鉄のスポンジ",
+  "block.extrasponges.gold_sponge": "金のスポンジ",
+  "block.extrasponges.diamond_sponge": "ダイヤモンドのスポンジ",
+  "block.extrasponges.emerald_sponge": "エメラルドのスポンジ",
+  "block.extrasponges.netherite_sponge": "ネザライトのスポンジ",
+  "block.extrasponges.wet_iron_sponge": "濡れた鉄のスポンジ",
+  "block.extrasponges.wet_gold_sponge": "濡れた金のスポンジ",
+  "block.extrasponges.wet_diamond_sponge": "濡れたダイヤモンドのスポンジ",
+  "block.extrasponges.wet_emerald_sponge": "濡れたエメラルドのスポンジ",
+  "block.extrasponges.wet_netherite_sponge": "濡れたネザライトのスポンジ",
+  "block.extrasponges.lava_sponge": "溶岩スポンジ",
+  "block.extrasponges.wet_lava_sponge": "溶けた溶岩スポンジ"
+}
