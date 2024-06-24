@@ -1,11 +1,17 @@
 package me.ultrusmods.extrasponges.block;
 
-import net.minecraft.block.*;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BucketPickup;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
 
 public class LavaSpongeBlock extends Block {
 
@@ -13,7 +19,7 @@ public class LavaSpongeBlock extends Block {
     private final int absorbAmount;
     private Block wetSponge;
 
-    public LavaSpongeBlock(Settings settings, int range, int absorbAmount) {
+    public LavaSpongeBlock(BlockBehaviour.Properties settings, int range, int absorbAmount) {
         super(settings);
         this.range = range;
         this.absorbAmount = absorbAmount;
@@ -22,46 +28,50 @@ public class LavaSpongeBlock extends Block {
     public void setWetSponge(Block wetSponge) {
         this.wetSponge = wetSponge;
     }
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        if (!oldState.isOf(state.getBlock())) {
-            this.update(world, pos);
+
+    @Override
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean notify) {
+        if (!oldState.is(state.getBlock())) {
+            this.update(level, pos);
         }
     }
 
-    public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-        this.update(world, pos);
-        super.neighborUpdate(state, world, pos, block, fromPos, notify);
+    @Override
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
+        this.update(level, pos);
+        super.neighborChanged(state, level, pos, block, fromPos, notify);
     }
 
-    protected void update(World world, BlockPos pos) {
-        if (this.absorbLava(world, pos)) {
-            world.setBlockState(pos, wetSponge.getDefaultState(), 2);
-            world.syncWorldEvent(2001, pos, Block.getRawIdFromState(Blocks.LAVA.getDefaultState()));
+
+    protected void update(Level level, BlockPos pos) {
+        if (this.absorbLava(level, pos)) {
+            level.setBlock(pos, wetSponge.defaultBlockState(), 2);
+            level.globalLevelEvent(2001, pos, Block.getId(Blocks.LAVA.defaultBlockState()));
         }
     }
 
-    private boolean absorbLava(World world, BlockPos pos) {
+    private boolean absorbLava(Level level, BlockPos pos) {
         return BlockPos.breadthFirstTraversal(pos, range, absorbAmount, (posx, consumer) -> {
-            for (Direction direction : DIRECTIONS) {
-                consumer.accept(posx.offset(direction));
+            for (Direction direction : BlockBehaviour.UPDATE_SHAPE_ORDER) {
+                consumer.accept(posx.relative(direction));
             }
         }, (checkedPos) -> {
             if (checkedPos.equals(pos)) {
                 return true;
             } else {
-                BlockState blockState = world.getBlockState(checkedPos);
-                FluidState fluidState = world.getFluidState(checkedPos);
-                if (!fluidState.isIn(FluidTags.LAVA)) {
+                BlockState blockState = level.getBlockState(checkedPos);
+                FluidState fluidState = level.getFluidState(checkedPos);
+                if (!fluidState.is(FluidTags.LAVA)) {
                     return false;
                 } else {
                     Block block = blockState.getBlock();
-                    if (block instanceof FluidDrainable fluidDrainable) {
-                        if (!fluidDrainable.tryDrainFluid(null, world, checkedPos, blockState).isEmpty()) {
+                    if (block instanceof BucketPickup bucketPickup) {
+                        if (!bucketPickup.pickupBlock(null, level, checkedPos, blockState).isEmpty()) {
                             return true;
                         }
                     }
-                    if (blockState.getBlock() instanceof FluidBlock) {
-                        world.setBlockState(checkedPos, Blocks.AIR.getDefaultState(), 3);
+                    if (blockState.getBlock() instanceof LiquidBlock) {
+                        level.setBlock(checkedPos, Blocks.AIR.defaultBlockState(), 3);
                     } else {
                         return false;
                     }

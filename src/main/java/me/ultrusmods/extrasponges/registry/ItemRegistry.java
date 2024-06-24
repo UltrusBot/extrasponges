@@ -1,13 +1,11 @@
-package me.ultrusmods.extrasponges.client;
+package me.ultrusmods.extrasponges.registry;
 
 import me.ultrusmods.extrasponges.ExtraSponges;
-import me.ultrusmods.extrasponges.block.BlockRegistry;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 
 public class ItemRegistry {
     private static final String MOD_ID = ExtraSponges.MOD_ID;
@@ -26,6 +24,6 @@ public class ItemRegistry {
 
     }
     private static Item register(String id, Item item) {
-        return Registry.register(Registries.ITEM, new Identifier(MOD_ID, id), item);
+        return Registry.register(BuiltInRegistries.ITEM, ExtraSponges.id(id), item);
     }
 }

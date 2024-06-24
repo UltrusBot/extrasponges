@@ -1,19 +1,24 @@
 package me.ultrusmods.extrasponges.block;
 
-import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BucketPickup;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
 
 public class ExtraSpongeBlock extends Block {
 
     private final int range;
     private final int absorbAmount;
     private Block wetSponge;
-    public ExtraSpongeBlock(Settings settings, int range, int absorbAmount) {
+    public ExtraSpongeBlock(BlockBehaviour.Properties settings, int range, int absorbAmount) {
         super(settings);
         this.range = range;
         this.absorbAmount = absorbAmount;
@@ -22,29 +27,32 @@ public class ExtraSpongeBlock extends Block {
     public void setWetSponge(Block wetSponge) {
         this.wetSponge = wetSponge;
     }
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        if (!oldState.isOf(state.getBlock())) {
-            this.update(world, pos);
+
+    @Override
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean notify) {
+        if (!oldState.is(state.getBlock())) {
+            this.update(level, pos);
         }
     }
 
-    public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-        this.update(world, pos);
-        super.neighborUpdate(state, world, pos, block, fromPos, notify);
+    @Override
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
+        this.update(level, pos);
+        super.neighborChanged(state, level, pos, block, fromPos, notify);
     }
 
-    protected void update(World world, BlockPos pos) {
-        if (this.absorbWater(world, pos)) {
-            world.setBlockState(pos, wetSponge.getDefaultState(), 2);
-            world.syncWorldEvent(2001, pos, Block.getRawIdFromState(Blocks.WATER.getDefaultState()));
+    protected void update(Level level, BlockPos pos) {
+        if (this.absorbWater(level, pos)) {
+            level.setBlock(pos, wetSponge.defaultBlockState(), 2);
+            level.globalLevelEvent(2001, pos, Block.getId(Blocks.WATER.defaultBlockState()));
         }
 
     }
 
-    private boolean absorbWater(World world, BlockPos pos) {
+    private boolean absorbWater(Level world, BlockPos pos) {
         return BlockPos.breadthFirstTraversal(pos, range, absorbAmount, (posx, consumer) -> {
-            for (Direction direction : DIRECTIONS) {
-                consumer.accept(posx.offset(direction));
+            for (Direction direction : BlockBehaviour.UPDATE_SHAPE_ORDER) {
+                consumer.accept(posx.relative(direction));
             }
         }, (checkedPos) -> {
             if (checkedPos.equals(pos)) {
@@ -52,26 +60,26 @@ public class ExtraSpongeBlock extends Block {
             } else {
                 BlockState blockState = world.getBlockState(checkedPos);
                 FluidState fluidState = world.getFluidState(checkedPos);
-                if (!fluidState.isIn(FluidTags.WATER)) {
+                if (!fluidState.is(FluidTags.WATER)) {
                     return false;
                 } else {
                     Block block = blockState.getBlock();
-                    if (block instanceof FluidDrainable fluidDrainable) {
-                        if (!fluidDrainable.tryDrainFluid(null, world, checkedPos, blockState).isEmpty()) {
+                    if (block instanceof BucketPickup bucketPickup) {
+                        if (!bucketPickup.pickupBlock(null, world, checkedPos, blockState).isEmpty()) {
                             return true;
                         }
                     }
 
-                    if (blockState.getBlock() instanceof FluidBlock) {
-                        world.setBlockState(checkedPos, Blocks.AIR.getDefaultState(), 3);
+                    if (blockState.getBlock() instanceof LiquidBlock) {
+                        world.setBlock(checkedPos, Blocks.AIR.defaultBlockState(), 3);
                     } else {
-                        if (!blockState.isOf(Blocks.KELP) && !blockState.isOf(Blocks.KELP_PLANT) && !blockState.isOf(Blocks.SEAGRASS) && !blockState.isOf(Blocks.TALL_SEAGRASS)) {
+                        if (!blockState.is(Blocks.KELP) && !blockState.is(Blocks.KELP_PLANT) && !blockState.is(Blocks.SEAGRASS) && !blockState.is(Blocks.TALL_SEAGRASS)) {
                             return false;
                         }
 
                         BlockEntity blockEntity = blockState.hasBlockEntity() ? world.getBlockEntity(checkedPos) : null;
-                        dropStacks(blockState, world, checkedPos, blockEntity);
-                        world.setBlockState(checkedPos, Blocks.AIR.getDefaultState(), 3);
+                        dropResources(blockState, world, checkedPos, blockEntity);
+                        world.setBlock(checkedPos, Blocks.AIR.defaultBlockState(), 3);
                     }
 
                     return true;

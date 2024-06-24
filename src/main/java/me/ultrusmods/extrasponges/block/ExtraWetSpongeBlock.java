@@ -2,39 +2,42 @@ package me.ultrusmods.extrasponges.block;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.random.RandomGenerator;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class ExtraWetSpongeBlock extends Block {
     private final BlockState originalBlock;
-    public ExtraWetSpongeBlock(Settings settings, BlockState originalBlock) {
+    public ExtraWetSpongeBlock(BlockBehaviour.Properties settings, BlockState originalBlock) {
         super(settings);
         this.originalBlock = originalBlock;
     }
 
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        if (world.getDimension().ultraWarm()) {
-            world.setBlockState(pos, originalBlock, 3);
-            world.syncWorldEvent(2009, pos, 0);
-            world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, (1.0F + world.getRandom().nextFloat() * 0.2F) * 0.7F);
+    @Override
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean notify) {
+        if (level.dimensionType().ultraWarm()) {
+            level.setBlock(pos, originalBlock, 3);
+            level.globalLevelEvent(2009, pos, 0);
+            level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, (1.0F + level.getRandom().nextFloat() * 0.2F) * 0.7F);
         }
 
     }
 
+    @Override
     @Environment(EnvType.CLIENT)
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, RandomGenerator random) {
-        Direction direction = Direction.random(random);
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        Direction direction = Direction.getRandom(random);
         if (direction != Direction.UP) {
-            BlockPos blockPos = pos.offset(direction);
-            BlockState blockState = world.getBlockState(blockPos);
-            if (!state.isOpaque() || !blockState.isSideSolidFullSquare(world, blockPos, direction.getOpposite())) {
+            BlockPos blockPos = pos.relative(direction);
+            BlockState blockState = level.getBlockState(blockPos);
+            if (!state.canOcclude() || !blockState.isFaceSturdy(level, blockPos, direction.getOpposite())) {
                 double d = pos.getX();
                 double e = pos.getY();
                 double f = pos.getZ();
@@ -61,7 +64,7 @@ public class ExtraWetSpongeBlock extends Block {
                     }
                 }
 
-                world.addParticle(ParticleTypes.DRIPPING_WATER, d, e, f, 0.0D, 0.0D, 0.0D);
+                level.addParticle(ParticleTypes.DRIPPING_WATER, d, e, f, 0.0D, 0.0D, 0.0D);
             }
         }
     }
