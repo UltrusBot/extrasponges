@@ -1,1 +1,2 @@
 - Rewrote mod, now available for NeoForge & Fabric
+- Add ja_jp translation, Thanks to @Abbage230 in PR #7
