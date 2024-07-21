@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "extrasponges:wet_diamond_sponge"
-  },
-  "result": "extrasponges:diamond_sponge",
-  "experience": 0.15,
-  "cookingtime": 200
-}

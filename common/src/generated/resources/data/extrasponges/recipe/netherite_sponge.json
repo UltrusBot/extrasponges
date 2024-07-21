@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "S": {
+      "item": "extrasponges:diamond_sponge"
+    },
+    "U": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "SUS",
+    "SSS"
+  ],
+  "result": {
+    "count": 8,
+    "id": "extrasponges:netherite_sponge"
+  }
+}

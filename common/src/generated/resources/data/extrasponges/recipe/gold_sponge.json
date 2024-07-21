@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "S": {
+      "item": "extrasponges:iron_sponge"
+    },
+    "U": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "SUS",
+    "SSS"
+  ],
+  "result": {
+    "count": 8,
+    "id": "extrasponges:gold_sponge"
+  }
+}

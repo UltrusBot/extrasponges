@@ -1,1 +1,1 @@
-- Update fabric.mod.json to enable 1.20.2 in minecraft version range.
+- Rewrote mod, now available for NeoForge & Fabric

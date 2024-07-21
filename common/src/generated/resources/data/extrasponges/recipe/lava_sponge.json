@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:basalt"
+    },
+    "M": {
+      "item": "minecraft:magma_block"
+    },
+    "S": {
+      "item": "minecraft:sponge"
+    }
+  },
+  "pattern": [
+    "MSM",
+    "SBS",
+    "MSM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "extrasponges:lava_sponge"
+  }
+}
