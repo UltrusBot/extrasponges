@@ -74,7 +74,7 @@ publishMods {
         accessToken = providers.gradleProperty("GH_TOKEN")
         repository = "UltrusBot/ExtraSponges"
         commitish = "1.21"
-        tagName = "v${version}-fabric"
+        tagName = "v${project.version}+fabric"
     }
 
     github("githubNeoforge") {
@@ -83,6 +83,6 @@ publishMods {
         accessToken = providers.gradleProperty("GH_TOKEN")
         repository = "UltrusBot/ExtraSponges"
         commitish = "1.21"
-        tagName = "v${version}-neoforge"
+        tagName = "v${project.version}+neoforge"
     }
 }
