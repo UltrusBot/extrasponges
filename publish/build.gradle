@@ -54,7 +54,7 @@ publishMods {
         file = project(":neoforge").jar.archiveFile
 
         accessToken = providers.gradleProperty("CF_API_KEY")
-        projectId = "508940"
+        projectId = "457043"
         modLoaders.addAll(neoForgeLoaders)
         minecraftVersions.addAll(neoForgeMcVersions)
     }
@@ -63,7 +63,7 @@ publishMods {
         file = project(":neoforge").jar.archiveFile
 
         accessToken = providers.gradleProperty("MODRINTH_TOKEN")
-        projectId = "r7G43arb"
+        projectId = "poGrqY8n"
         modLoaders.addAll(neoForgeLoaders)
         minecraftVersions.addAll(neoForgeMcVersions)
     }
