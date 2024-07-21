@@ -8,7 +8,7 @@ evaluationDependsOn(":neoforge")
 
 publishMods {
     changelog = rootProject.file("CHANGELOG.md").text
-    displayName = "${mod_name} v${version}"
+    displayName = "${mod_name} v${project.version}"
     type = STABLE
 
     def neoForgeLoaders = [
@@ -68,18 +68,21 @@ publishMods {
         minecraftVersions.addAll(neoForgeMcVersions)
     }
 
-    github {
-        additionalFiles.from(
-                project(":common").jar.archiveFile,
-                project(":common").sourcesJar.archiveFile,
-                project(":fabric").remapJar.archiveFile,
-                project(":fabric").remapSourcesJar.archiveFile,
-                project(":neoforge").jar.archiveFile,
-                project(":neoforge").sourcesJar.archiveFile)
-
+    github("githubFabric") {
+        file = project(":fabric").remapJar.archiveFile
+        additionalFiles.from(project(":fabric").remapSourcesJar.archiveFile)
         accessToken = providers.gradleProperty("GH_TOKEN")
         repository = "UltrusBot/ExtraSponges"
-        commitish = "1.21" // This is the branch the release tag will be created from
-        tagName = "v${version}"
+        commitish = "1.21"
+        tagName = "v${version}-fabric"
+    }
+
+    github("githubNeoforge") {
+        file = project(":neoforge").jar.archiveFile
+        additionalFiles.from(project(":neoforge").sourcesJar.archiveFile)
+        accessToken = providers.gradleProperty("GH_TOKEN")
+        repository = "UltrusBot/ExtraSponges"
+        commitish = "1.21"
+        tagName = "v${version}-neoforge"
     }
 }
