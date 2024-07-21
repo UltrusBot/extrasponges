@@ -27,7 +27,7 @@ publishMods {
     curseforge("curseforgeFabric") {
         file = project(":fabric").remapJar.archiveFile
 
-        accessToken = providers.environmentVariable("CURSEFORGE_API_KEY")
+        accessToken = providers.environmentVariable("CF_API_KEY")
         projectId = "457043"
         modLoaders.addAll(fabricLoaders)
         minecraftVersions.addAll(fabricMcVersions)
@@ -40,7 +40,7 @@ publishMods {
     modrinth("modrinthFabric") {
         file = project(":fabric").remapJar.archiveFile
 
-        accessToken = providers.environmentVariable("MODRINTH_API_KEY")
+        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
         projectId = "poGrqY8n"
         modLoaders.addAll(fabricLoaders)
         minecraftVersions.addAll(fabricMcVersions)
@@ -53,7 +53,7 @@ publishMods {
     curseforge("curseforgeNeoforge") {
         file = project(":neoforge").jar.archiveFile
 
-        accessToken = providers.environmentVariable("CURSEFORGE_API_KEY")
+        accessToken = providers.environmentVariable("CF_API_KEY")
         projectId = "508940"
         modLoaders.addAll(neoForgeLoaders)
         minecraftVersions.addAll(neoForgeMcVersions)
@@ -62,7 +62,7 @@ publishMods {
     modrinth("modrinthNeoforge") {
         file = project(":neoforge").jar.archiveFile
 
-        accessToken = providers.environmentVariable("MODRINTH_API_KEY")
+        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
         projectId = "r7G43arb"
         modLoaders.addAll(neoForgeLoaders)
         minecraftVersions.addAll(neoForgeMcVersions)
@@ -77,7 +77,7 @@ publishMods {
                 project(":neoforge").jar.archiveFile,
                 project(":neoforge").sourcesJar.archiveFile)
 
-        accessToken = providers.environmentVariable("GITHUB_TOKEN")
+        accessToken = providers.environmentVariable("GH_TOKEN")
         repository = "UltrusBot/ExtraSponges"
         commitish = "1.21" // This is the branch the release tag will be created from
         tagName = "v${version}"
