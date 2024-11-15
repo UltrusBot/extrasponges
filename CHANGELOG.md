@@ -1,2 +1,2 @@
-- Rewrote mod, now available for NeoForge & Fabric
-- Add ja_jp translation, Thanks to @Abbage230 in PR #7
+- Add Russian translation, thanks to @EnderDrag0n in PR #8.
+- Allow mod to load on 1.21.1
