@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.15,
+  "ingredient": {
+    "item": "extrasponges:wet_tin_sponge"
+  },
+  "result": {
+    "count": 1,
+    "id": "extrasponges:tin_sponge"
+  }
+}

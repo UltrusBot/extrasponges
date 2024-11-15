@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/steel"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "S": {
+      "item": "extrasponges:iron_sponge"
+    },
+    "U": {
+      "tag": "c:ingots/steel"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "SUS",
+    "SSS"
+  ],
+  "result": {
+    "count": 8,
+    "id": "extrasponges:steel_sponge"
+  }
+}

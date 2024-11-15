@@ -1,0 +1,30 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:tags_populated",
+      "registry": "minecraft:item",
+      "values": [
+        "c:ingots/tin"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "S": {
+      "item": "minecraft:sponge"
+    },
+    "U": {
+      "tag": "c:ingots/tin"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "SUS",
+    "SSS"
+  ],
+  "result": {
+    "count": 8,
+    "id": "extrasponges:tin_sponge"
+  }
+}

@@ -7,10 +7,13 @@ public class ExtraSpongesDataGenerator implements DataGeneratorEntrypoint {
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         var pack = fabricDataGenerator.createPack();
-
-        pack.addProvider(ExtraSpongesModelGenerator::new);
-        pack.addProvider(ExtraSpongesLootGenerator::new);
-        pack.addProvider(ExtraSpongesRecipeGenerator::new);
-
+        var doModRecipes = System.getProperty("doModRecipes") != null;
+        if (doModRecipes) {
+            pack.addProvider(ExtraSpongesModRecipeGeneratorFabric::new);
+        } else {
+            pack.addProvider(ExtraSpongesModelGenerator::new);
+            pack.addProvider(ExtraSpongesLootGenerator::new);
+            pack.addProvider(ExtraSpongesRecipeGenerator::new);
+        }
     }
 }

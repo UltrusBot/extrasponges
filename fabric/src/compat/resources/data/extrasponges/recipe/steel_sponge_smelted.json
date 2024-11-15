@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.15,
+  "ingredient": {
+    "item": "extrasponges:wet_steel_sponge"
+  },
+  "result": {
+    "id": "extrasponges:steel_sponge"
+  }
+}

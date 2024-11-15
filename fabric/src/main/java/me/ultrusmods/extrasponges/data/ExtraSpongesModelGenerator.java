@@ -24,6 +24,16 @@ public class ExtraSpongesModelGenerator extends FabricModelProvider {
         blockStateModelGenerator.createTrivialCube(BlockRegistry.LAVA_SPONGE);
         blockStateModelGenerator.createTrivialCube(BlockRegistry.WET_LAVA_SPONGE);
 
+        // Modded Material Sponges
+        blockStateModelGenerator.createTrivialCube(BlockRegistry.TIN_SPONGE);
+        blockStateModelGenerator.createTrivialCube(BlockRegistry.WET_TIN_SPONGE);
+
+
+        blockStateModelGenerator.createTrivialCube(BlockRegistry.STEEL_SPONGE);
+        blockStateModelGenerator.createTrivialCube(BlockRegistry.WET_STEEL_SPONGE);
+
+        blockStateModelGenerator.createTrivialCube(BlockRegistry.LEAD_SPONGE);
+        blockStateModelGenerator.createTrivialCube(BlockRegistry.WET_LEAD_SPONGE);
     }
 
     @Override

@@ -30,9 +30,25 @@ loom {
             ideConfigGenerated(true)
             runDir("runs/server")
         }
+        fabricModDatagen {
+            server()
+            configName = "Fabric Mod Datagen"
+            setSource(sourceSets["test"])
+            ideConfigGenerated(true)
+            vmArg("-Dfabric-api.datagen")
+            vmArg("-Dfabric-api.datagen.output-dir=${file("../fabric/src/compat/resources")}")
+            vmArg("-Dfabric-api.datagen.modid=${mod_id}")
+            vmArg("-DdoModRecipes")
+            runDir("build/datagen")
+        }
     }
 }
 
+sourceSets {
+    named("main") {
+        resources.srcDir("src/compat/resources")
+    }
+}
 fabricApi {
     configureDataGeneration {
         outputDirectory = file("../common/src/generated")

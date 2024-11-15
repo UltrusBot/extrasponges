@@ -25,6 +25,15 @@ public class BlockRegistry {
     public static Block LAVA_SPONGE = new LavaSpongeBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.SPONGE), 6, 64);
     public static Block WET_LAVA_SPONGE = new WetLavaSpongeBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.SPONGE), LAVA_SPONGE.defaultBlockState());
 
+    // Modded Material Sponges
+    public static Block TIN_SPONGE = new ExtraSpongeBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.SPONGE), 12, 96);
+    public static Block WET_TIN_SPONGE = new ExtraWetSpongeBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.SPONGE), TIN_SPONGE.defaultBlockState());
+
+    public static Block STEEL_SPONGE = new ExtraSpongeBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.SPONGE), 36, 224);
+    public static Block WET_STEEL_SPONGE = new ExtraWetSpongeBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.SPONGE), STEEL_SPONGE.defaultBlockState());
+
+    public static Block LEAD_SPONGE = new ExtraSpongeBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.SPONGE), 22, 104);
+    public static Block WET_LEAD_SPONGE = new ExtraWetSpongeBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.SPONGE), LEAD_SPONGE.defaultBlockState());
     public static void register(BiConsumer<ResourceLocation, Block> registerFunction) {
         ((ExtraSpongeBlock)IRON_SPONGE).setWetSponge(WET_IRON_SPONGE);
         ((ExtraSpongeBlock)GOLD_SPONGE).setWetSponge(WET_GOLD_SPONGE);
@@ -43,6 +52,17 @@ public class BlockRegistry {
         registerFunction.accept(Constants.id("lava_sponge"), LAVA_SPONGE);
         registerFunction.accept(Constants.id("wet_lava_sponge"), WET_LAVA_SPONGE);
 
+        ((ExtraSpongeBlock)TIN_SPONGE).setWetSponge(WET_TIN_SPONGE);
+        registerFunction.accept(Constants.id("tin_sponge"), TIN_SPONGE);
+        registerFunction.accept(Constants.id("wet_tin_sponge"), WET_TIN_SPONGE);
+
+        ((ExtraSpongeBlock)STEEL_SPONGE).setWetSponge(WET_STEEL_SPONGE);
+        registerFunction.accept(Constants.id("steel_sponge"), STEEL_SPONGE);
+        registerFunction.accept(Constants.id("wet_steel_sponge"), WET_STEEL_SPONGE);
+
+        ((ExtraSpongeBlock)LEAD_SPONGE).setWetSponge(WET_LEAD_SPONGE);
+        registerFunction.accept(Constants.id("lead_sponge"), LEAD_SPONGE);
+        registerFunction.accept(Constants.id("wet_lead_sponge"), WET_LEAD_SPONGE);
     }
 
 }

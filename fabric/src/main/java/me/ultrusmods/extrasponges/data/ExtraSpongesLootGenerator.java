@@ -33,7 +33,15 @@ public class ExtraSpongesLootGenerator extends FabricBlockLootTableProvider {
         this.dropSelf(BlockRegistry.LAVA_SPONGE);
         this.dropSelf(BlockRegistry.WET_LAVA_SPONGE);
 
+        // Modded Material Sponges
+        this.dropSelf(BlockRegistry.TIN_SPONGE);
+        this.dropSelf(BlockRegistry.WET_TIN_SPONGE);
 
+        this.dropSelf(BlockRegistry.STEEL_SPONGE);
+        this.dropSelf(BlockRegistry.WET_STEEL_SPONGE);
+
+        this.dropSelf(BlockRegistry.LEAD_SPONGE);
+        this.dropSelf(BlockRegistry.WET_LEAD_SPONGE);
     }
 
 

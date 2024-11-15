@@ -19,6 +19,17 @@ public class ItemRegistry {
     public static Item LAVA_SPONGE =  new BlockItem(BlockRegistry.LAVA_SPONGE, new Item.Properties());
     public static Item WET_LAVA_SPONGE =  new BlockItem(BlockRegistry.WET_LAVA_SPONGE, new Item.Properties());
 
+
+    // Modded Material Sponges
+    public static Item TIN_SPONGE =  new BlockItem(BlockRegistry.TIN_SPONGE, new Item.Properties());
+    public static Item WET_TIN_SPONGE =  new BlockItem(BlockRegistry.WET_TIN_SPONGE, new Item.Properties());
+
+    public static Item STEEL_SPONGE =  new BlockItem(BlockRegistry.STEEL_SPONGE, new Item.Properties());
+    public static Item WET_STEEL_SPONGE =  new BlockItem(BlockRegistry.WET_STEEL_SPONGE, new Item.Properties());
+
+    public static Item LEAD_SPONGE =  new BlockItem(BlockRegistry.LEAD_SPONGE, new Item.Properties());
+    public static Item WET_LEAD_SPONGE =  new BlockItem(BlockRegistry.WET_LEAD_SPONGE, new Item.Properties());
+
     public static void register(BiConsumer<ResourceLocation, Item> registerFunction) {
         registerFunction.accept(Constants.id("iron_sponge"), IRON_SPONGE);
         registerFunction.accept(Constants.id("gold_sponge"), GOLD_SPONGE);
@@ -30,5 +41,14 @@ public class ItemRegistry {
         registerFunction.accept(Constants.id("wet_netherite_sponge"), WET_NETHERITE_SPONGE);
         registerFunction.accept(Constants.id("lava_sponge"), LAVA_SPONGE);
         registerFunction.accept(Constants.id("wet_lava_sponge"), WET_LAVA_SPONGE);
+
+        registerFunction.accept(Constants.id("tin_sponge"), TIN_SPONGE);
+        registerFunction.accept(Constants.id("wet_tin_sponge"), WET_TIN_SPONGE);
+
+        registerFunction.accept(Constants.id("steel_sponge"), STEEL_SPONGE);
+        registerFunction.accept(Constants.id("wet_steel_sponge"), WET_STEEL_SPONGE);
+
+        registerFunction.accept(Constants.id("lead_sponge"), LEAD_SPONGE);
+        registerFunction.accept(Constants.id("wet_lead_sponge"), WET_LEAD_SPONGE);
     }
 }
