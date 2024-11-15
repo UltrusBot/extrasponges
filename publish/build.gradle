@@ -19,7 +19,7 @@ publishMods {
             "quilt"
     ]
     def mcVersions = [
-            "1.21"
+            "1.21", "1.21.1"
     ]
     def fabricMcVersions = mcVersions
     def neoForgeMcVersions = mcVersions
